@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Exception message:</b>
+  <%= @fix.exception_message %>
+</p>
+
+<p>
+  <b>Backtrace:</b>
+  <%= @fix.backtrace %>
+</p>
+
+
+<%= link_to 'Edit', edit_fix_path(@fix) %> |
+<%= link_to 'Back', fixes_path %>

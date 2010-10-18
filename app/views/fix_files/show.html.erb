@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Fix:</b>
+  <%= @fix_file.fix %>
+</p>
+
+<p>
+  <b>Content before:</b>
+  <%= @fix_file.content_before %>
+</p>
+
+<p>
+  <b>Content after:</b>
+  <%= @fix_file.content_after %>
+</p>
+
+<p>
+  <b>Path:</b>
+  <%= @fix_file.path %>
+</p>
+
+
+<%= link_to 'Edit', edit_fix_file_path(@fix_file) %> |
+<%= link_to 'Back', fix_files_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@fix_file) do |f| %>
+  <% if @fix_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fix_file.errors.count, "error") %> prohibited this fix_file from being saved:</h2>
+
+      <ul>
+      <% @fix_file.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fix %><br />
+    <%= f.collection_select :fix, Fix.all, :exception_message, :id %>
+  </div>
+  <div class="field">
+    <%= f.label :content_before %><br />
+    <%= f.text_area :content_before %>
+  </div>
+  <div class="field">
+    <%= f.label :content_after %><br />
+    <%= f.text_area :content_after %>
+  </div>
+  <div class="field">
+    <%= f.label :path %><br />
+    <%= f.text_field :path %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

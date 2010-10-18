@@ -1,0 +1,29 @@
+<h1>Listing fix_files</h1>
+
+<table>
+  <tr>
+    <th>Fix</th>
+    <th>Content before</th>
+    <th>Content after</th>
+    <th>Path</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @fix_files.each do |fix_file| %>
+  <tr>
+    <td><%= fix_file.fix %></td>
+    <td><%= fix_file.content_before %></td>
+    <td><%= fix_file.content_after %></td>
+    <td><%= fix_file.path %></td>
+    <td><%= link_to 'Show', fix_file %></td>
+    <td><%= link_to 'Edit', edit_fix_file_path(fix_file) %></td>
+    <td><%= link_to 'Destroy', fix_file, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Fix file', new_fix_file_path %>
