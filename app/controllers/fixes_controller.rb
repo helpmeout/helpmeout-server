@@ -7,6 +7,9 @@ class FixesController < ApplicationController
     if params[:backtrace].present?
       @fixes = @fixes.where('backtrace LIKE ?', params[:backtrace])
     end
+    if params[:exception_classname].present?
+      @fixes = @fixes.where('exception_classname LIKE ?', params[:exception_classname])
+    end
 
     respond_to do |format|
       format.html # index.html.erb

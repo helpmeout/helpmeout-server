@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Exception message</th>
+    <th>Exception classname</th>
     <th>Backtrace</th>
     <th></th>
     <th></th>
@@ -12,7 +13,8 @@
 <% @fixes.each do |fix| %>
   <tr>
     <td><%= fix.exception_message %></td>
-    <td><%= fix.backtrace %></td>
+    <td><%= fix.exception_classname %></td>
+    <td><%= simple_format fix.backtrace %></td>
     <td><%= link_to 'Show', fix %></td>
     <td><%= link_to 'Edit', edit_fix_path(fix) %></td>
     <td><%= link_to 'Destroy', fix, :confirm => 'Are you sure?', :method => :delete %></td>
