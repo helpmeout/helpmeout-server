@@ -7,8 +7,38 @@
 
 <p>
   <b>Backtrace:</b>
-  <%= @fix.backtrace %>
+  <pre>
+    <%= @fix.backtrace %>
+  </pre>
 </p>
+
+<%- if @fix.fix_files.any? %>
+  <b>Files:</b>
+
+  <%- @fix.fix_files.each do |fix_file| %>
+    <p><%= fix_file.path %></p>
+    <p>
+      <table>
+        <tr>
+          <th>Content before: </th>
+          <th>Content after: </th>
+        </tr>
+        <tr>
+          <td><pre><%= fix_file.content_before %></pre></td>
+          <td><pre><%= fix_file.content_after %></pre></td>
+        </tr>
+        <tr>
+          <th>Content before (parsed): </th>
+          <th>Content after (parsed): </th>
+        </tr>
+        <tr>
+          <td><pre><%= fix_file.parsed_content_before %></pre></td>
+          <td><pre><%= fix_file.parsed_content_after %></pre></td>
+        </tr>
+      </table>
+    </p>
+  <% end %>
+<% end %>
 
 
 <%= link_to 'Edit', edit_fix_path(@fix) %> |
