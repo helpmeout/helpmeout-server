@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101104201806) do
+ActiveRecord::Schema.define(:version => 20101106220517) do
 
   create_table "fix_files", :force => true do |t|
     t.integer  "fix_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20101104201806) do
     t.datetime "updated_at"
     t.text     "parsed_content_before"
     t.text     "parsed_content_after"
+    t.text     "lexed_content_before"
   end
 
   create_table "fixes", :force => true do |t|

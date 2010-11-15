@@ -11,6 +11,10 @@ class FixesController < ApplicationController
       @fixes = @fixes.where('exception_classname LIKE ?', params[:exception_classname])
     end
 
+    if code_line = params[:code_line]
+      @fixes = @fixes.sort_by {|fix| fix.distance(code_line)}.first(5)
+    end
+
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @fixes, :include => :fix_files }

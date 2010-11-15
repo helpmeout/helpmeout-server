@@ -14,7 +14,6 @@ gem 'sqlite3-ruby', :require => 'sqlite3'
 # gem 'capistrano'
 
 # To use debugger
-gem 'ruby-debug'
 
 # Bundle the extra gems:
 # gem 'bj'
@@ -27,7 +26,10 @@ gem 'ruby-debug'
 # and rake tasks are available in development mode:
 group :development, :test do
   gem 'rspec-rails'
+  gem 'ruby-debug'
 end
 
-gem 'ruby_parser'
-gem 'ruby2ruby'
+# gem 'ruby_parser'
+gem 'rubylexer'
+# gem 'ruby2ruby'
+gem 'amatch'

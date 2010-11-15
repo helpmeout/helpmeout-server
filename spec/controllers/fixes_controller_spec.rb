@@ -8,9 +8,20 @@ describe FixesController do
 
   describe "GET index" do
     it "assigns all fixes as @fixes" do
-      Fix.stub(:all) { [mock_fix] }
-      get :index
-      assigns(:fixes).should eq([mock_fix])
+      fix_1 = mock('Fix 1')
+      fix_1.stub(:distance).with('code line').and_return(3)
+      fix_2 = mock('Fix 2')
+      fix_2.stub(:distance).with('code line').and_return(2)
+      fix_3 = mock('Fix 3')
+      fix_3.stub(:distance).with('code line').and_return(5)
+
+      scope = stub('Fixes scope')
+      scope.should_receive(:where).with('backtrace LIKE ?', 'backtrace').and_return(scope)
+      scope.should_receive(:where).with('exception_classname LIKE ?', 'exception_classname').and_return([fix_1, fix_2, fix_3, fix_3, fix_3, fix_2, fix_1])
+
+      Fix.stub(:scoped).and_return(scope)
+      get :index, :backtrace => 'backtrace', :exception_classname => 'exception_classname', :code_line => 'code line'
+      assigns(:fixes).should == [fix_2, fix_2, fix_1, fix_1, fix_3]
     end
   end
 
