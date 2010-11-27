@@ -11,8 +11,10 @@ class FixesController < ApplicationController
       @fixes = @fixes.where('exception_classname LIKE ?', params[:exception_classname])
     end
 
-    if code_line = params[:code_line]
-      @fixes = @fixes.sort_by {|fix| fix.distance(code_line)}.first(5)
+    if code_line = params[:code_line] 
+      if exception_message = params[:exception_message]
+        @fixes = @fixes.sort_by {|fix| 0 - fix.score(code_line, exception_message)}.first(5)
+      end
     end
 
     respond_to do |format|

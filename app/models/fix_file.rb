@@ -23,8 +23,8 @@ class FixFile < ActiveRecord::Base
     lexed_line = Lexer.lex(code_line)
     pattern = Amatch::Levenshtein.new(lexed_line.strip)
     lexed_content_before.split("\n").collect do |line|
-      pattern.match(line.strip)
-    end.min
+      pattern.similar(line.strip)
+    end.max
   end
 
 end
