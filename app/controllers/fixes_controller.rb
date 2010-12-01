@@ -23,6 +23,27 @@ class FixesController < ApplicationController
     end
   end
 
+  #POST find
+  def find
+    @fixes = Fix.scoped(:include => :fix_files)
+    if params[:backtrace].present?
+      @fixes = @fixes.where('backtrace LIKE ?', params[:backtrace])
+    end
+    if params[:exception_classname].present?
+      @fixes = @fixes.where('exception_classname LIKE ?', params[:exception_classname])
+    end
+
+    if code_line = params[:code_line] 
+      if exception_message = params[:exception_message]
+        @fixes = @fixes.sort_by {|fix| 0 - fix.score(code_line, exception_message)}.first(5)
+      end
+    end
+
+    respond_to do |format|
+      format.xml  { render :xml => @fixes, :include => :fix_files }
+    end
+  end
+
   # GET /fixes/1
   # GET /fixes/1.xml
   def show
