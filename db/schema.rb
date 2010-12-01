@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101106220517) do
+ActiveRecord::Schema.define(:version => 20101201004300) do
 
   create_table "fix_files", :force => true do |t|
     t.integer  "fix_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20101106220517) do
   end
 
   create_table "fixes", :force => true do |t|
-    t.string   "exception_message"
+    t.text     "exception_message",   :limit => 255
     t.text     "backtrace"
     t.datetime "created_at"
     t.datetime "updated_at"
