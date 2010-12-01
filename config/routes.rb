@@ -1,7 +1,9 @@
 HelpmeoutServer::Application.routes.draw do
   resources :fix_files
 
-  resources :fixes
+  resources :fixes do
+    post :index
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
