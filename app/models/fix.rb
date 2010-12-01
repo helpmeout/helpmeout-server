@@ -19,6 +19,6 @@ class Fix < ActiveRecord::Base
   end
 
   def strip_backtrace
-    backtrace = backtrace.strip unless backtrace.blank?
+    self.backtrace = backtrace.strip unless backtrace.nil
   end
 end
