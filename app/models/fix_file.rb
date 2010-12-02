@@ -16,6 +16,7 @@ class FixFile < ActiveRecord::Base
   # end
 
   def set_lexed_content_before
+    self.content_before ||= ''
     self.lexed_content_before = begin
                                   Lexer.lex(content_before)
                                 rescue
