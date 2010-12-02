@@ -15,7 +15,7 @@ class Fix < ActiveRecord::Base
   def distance(code_line)
     fix_files.collect do |fix_file|
       fix_file.distance(code_line)
-    end.max
+    end.max || 0
   end
 
   def strip_backtrace
