@@ -16,7 +16,11 @@ class FixFile < ActiveRecord::Base
   # end
 
   def set_lexed_content_before
-    self.lexed_content_before = Lexer.lex(content_before)
+    self.lexed_content_before = begin
+                                  Lexer.lex(content_before)
+                                rescue
+                                  content_before
+                                end
   end
 
   def distance(code_line)
